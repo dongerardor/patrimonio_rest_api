@@ -66,9 +66,11 @@ exports.deleteVenue = function(req, res){
 		venue.remove(function(err){
 			if(err){
 				return res.send(500, err.message);
+			}else{
+				res.status(200).jsonp(venue);
+				
 			}
-			
-			res.status(200);
+
 		})
 	});
 };

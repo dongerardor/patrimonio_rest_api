@@ -8,7 +8,7 @@ var express = require("express"),
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 mongoose.connect('mongodb://semplicetta:tortorella@ds039431.mongolab.com:39431/data4viz', function(err, res){
 	if(err) throw err;
@@ -36,10 +36,12 @@ venues.route('/venues')
 	.get(VenuesController.findAllVenues)
 	.post(VenuesController.addVenue);
 
+venues.route('/venues/delete/:id')
+	.post(VenuesController.deleteVenue);
+
 venues.route('/venues/:id')
 	.get(VenuesController.findById)
-	.put(VenuesController.updateVenue)
-	.delete(VenuesController.deleteVenue);
+	.put(VenuesController.updateVenue);
 
 app.use('/api', venues);
 
