@@ -6,6 +6,10 @@ var express = require("express"),
 	models = require('./models/venues')(app, mongoose),
 	VenuesController = require("./controllers/heritage");
 
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+var port = process.env.PORT || 8080;
+
 mongoose.connect('mongodb://semplicetta:tortorella@ds039431.mongolab.com:39431/data4viz', function(err, res){
 	if(err) throw err;
 	console.log('Connected to Database');
@@ -45,6 +49,6 @@ app.use('/api', venues);
 connect()
   .use(connect.static(__dirname + '/static'))*/
 
-app.listen(3000, function(){
-	console.log("Node server running on http://localhost:3000");
+app.listen(port, function(){
+	console.log("Node server running on http://localhost:" + port);
 })
